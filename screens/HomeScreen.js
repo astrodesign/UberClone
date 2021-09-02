@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, SafeAreaView, Image} from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity} from 'react-native'
 import NavOptions from '../components/NavOptions'; 
 import tw from "tailwind-react-native-classnames"; 
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -7,17 +7,14 @@ import {GOOGLE_MAPS_APIKEY} from "@env";
 import { useDispatch } from 'react-redux';
 import { setDestination, setOrigin } from "../slices/navSlice"
 import { Icon } from 'react-native-elements';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
-const HomeScreen = () => {
-    const navigation = useNavigation();
-    const dispatch = useDispatch(); 
+const HomeScreen = ({navigation, dispatch}) => {
 
     return (
         <SafeAreaView style={tw`bg-white h-full`}>
         <View style={{width: '100%', left: '40%', marginTop: 10, }}>
-          <TouchableOpacity onPress={()=> navigation.navigate('Profile')}>
+          <TouchableOpacity onPress={()=> navigation.navigate('Account')}>
             <Icon type='feather' name='user' color="black"/>
           </TouchableOpacity>
         </View>
@@ -44,15 +41,11 @@ const HomeScreen = () => {
               fontSize:18
             }
           }}
-          onPress={(data, details = null)=>{
-            console.log(details)
-            
-            dispatch(
-              setOrigin({
+          onPress={(data, details = null) => {            
+            dispatch(setOrigin({
               location: details.geometry.location, 
-              description: data.description
-              })
-            ); 
+              description: data.description, 
+            })); 
 
             dispatch(setDestination(null)); 
           }}

@@ -1,15 +1,15 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
-import { StyleSheet, Text, View, } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
-const Profile = () => {
+const Privacy = () => {
     return (
         <SafeAreaView>
-            <Text>Profile Screen</Text>
+            <Text>Privacy</Text>
         </SafeAreaView>
     )
 }
 
-export default Profile
+export default Privacy
 
 const styles = StyleSheet.create({})
