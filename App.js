@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, KeyboardAvoidingView } from 'react-native';
 import { Provider } from "react-redux"; 
 import HomeScreen from './screens/HomeScreen';
 import { SafeAreaProvider} from 'react-native-safe-area-context'; 
@@ -14,6 +14,7 @@ import Billing from './screens/Billing';
 import Notifications from './screens/Notifications';
 import Privacy from './screens/Privacy';
 import { store } from './store'; 
+import { Platform } from 'react-native';
 
 
 const Stack = createStackNavigator(); 
@@ -23,6 +24,10 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
       <SafeAreaProvider>
+        {/* the keyboard avoiding view behavior allows for the shifting of inputs in other components */}
+        <KeyboardAvoidingView style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS ==='ios' ? -64 : 0}>
         <Stack.Navigator>
           <Stack.Screen 
             name="HomeScreen" 
@@ -60,6 +65,7 @@ export default function App() {
             options={{
             headerShown: false, }}/>
         </Stack.Navigator>
+        </KeyboardAvoidingView>
       </SafeAreaProvider>
       </NavigationContainer>
     </Provider>

@@ -7,60 +7,37 @@ import { setDestination, setOrigin } from '../slices/navSlice'
 import {GOOGLE_MAPS_APIKEY} from "@env"; 
 import { useDispatch } from 'react-redux'
 import { TouchableOpacity } from 'react-native'
+import { createStackNavigator } from '@react-navigation/stack'
+import NavigateCard from '../components/NavigateCard'
+import RideOptionsCard from '../components/RideOptionsCard'
+
 
 
 const MapScreen = () => {
     const dispatch = useDispatch(); 
+    const Stack = createStackNavigator(); 
 
     return (
         <View>
-            <View style={tw`h-2/3`}>
+            <View style={tw`h-1/2`}>
                 <Map/>
             </View>
 
-            <View style={tw`h-1/3 rounded-sm bg-white` }>
-                <View style={tw`p-6`}>
-                    <GooglePlacesAutocomplete
-                    placeholder ='Where to?'
-                    styles={{
-                        container:{
-                        flex: 0, 
-                        }, 
-                        textInput:{
-                        fontSize:18, 
-                        backgroundColor: '#e8e8e8', 
-                        borderRadius: 15, 
-                        paddingHorizontal: 15
-                        }
-                    }}
-                   /* onPress={(data, details = null) => {            
-                        dispatch(
-                            setOrigin({
-                                location: details.geometry.location,
-                                description: data.description, 
-                            })
-                        );  
-
-                        dispatch(
-                            setDestination(null)
-                        ); 
-                    }} */
-                    fetchDetails={true}
-                    returnKeyType={'search'}
-                    minLength={2}
-                    enablePoweredByContainer={false}
-                    query = {{ 
-                        key: GOOGLE_MAPS_APIKEY, 
-                        language: 'en',
-                    }}
-                    nearbyPlacesAPI="GooglePlacesSearch"
-                    debounce={400}
-                    
-                    />
-                    <TouchableOpacity>
-                        <Text>Use Current Location</Text>
-                    </TouchableOpacity>
-            </View>
+            <View style={tw`h-1/2 rounded-sm bg-white` }>
+                <Stack.Navigator>
+                    <Stack.Screen 
+                    name = 'NavigateCard'
+                    component = {NavigateCard}
+                    options={{
+                        headerShown: false
+                    }}/>
+                    <Stack.Screen 
+                    name = 'RideOptionsCard'
+                    component = {RideOptionsCard}
+                    options={{
+                        headerShown: false
+                    }}/>
+                </Stack.Navigator>
             </View>
         </View>
     )

@@ -8,9 +8,11 @@ import { useDispatch } from 'react-redux';
 import { setDestination, setOrigin } from "../slices/navSlice"
 import { Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import NavFavorites from '../components/NavFavorites';
 
 const HomeScreen = () => {
   const  dispatch = useDispatch();
+  const navigation = useNavigation(); 
 
     return (
         <SafeAreaView style={tw`bg-white h-full`}>
@@ -42,7 +44,7 @@ const HomeScreen = () => {
               fontSize:18
             }
           }}
-          onPress={(data, details) => {            
+          onPress={(data, details = null) => {            
             dispatch(
                 setOrigin({
                     location: details.geometry.location,
@@ -65,13 +67,12 @@ const HomeScreen = () => {
           nearbyPlacesAPI="GooglePlacesSearch"
           debounce={400}
           
-          />
+        />
 
-          <NavOptions/>
-
-          
-          
+        <NavOptions/>
+        <NavFavorites/>
         </View>
+
       </SafeAreaView>
     )
 }
