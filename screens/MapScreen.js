@@ -12,6 +12,7 @@ import NavigateCard from '../components/NavigateCard'
 import RideOptionsCard from '../components/RideOptionsCard'
 import { Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native'
+import SearchingAnimation from '../components/SearchingAnimation'
 
 
 
@@ -42,6 +43,12 @@ const MapScreen = () => {
                     <Stack.Screen 
                     name = 'RideOptionsCard'
                     component = {RideOptionsCard}
+                    options={{
+                        headerShown: false
+                    }}/>
+                    <Stack.Screen 
+                    name = 'SearchingAnimation'
+                    component = {SearchingAnimation}
                     options={{
                         headerShown: false
                     }}/>

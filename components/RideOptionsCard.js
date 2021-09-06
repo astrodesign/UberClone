@@ -68,7 +68,7 @@ const RideOptionsCard = () => {
                     <Image style={{height: 100, width: 100, resizeMode: "contain"}} source={{uri: image}}/>
                     <View style={tw`-ml-6`}>
                         <Text style={tw`font-semibold text-xl`}>{title}</Text>
-                        <Text>{travelTimeInformation?.duration.text}</Text>
+                        <Text>{travelTimeInformation?.duration?.text}</Text>
                     </View>   
                     <Text style={tw`text-xl`}>
                         {new Intl.NumberFormat('en-us', {
@@ -85,7 +85,10 @@ const RideOptionsCard = () => {
             )}/>
             
             <View>
-                <TouchableOpacity disabled={!selected} style={tw`bg-black py-3 m-3 ${!selected && 'bg-gray-400'}`}>
+                <TouchableOpacity 
+                disabled={!selected} 
+                style={tw`bg-black py-3 m-3 ${!selected && 'bg-gray-400'}`}
+                onPress={()=> navigation.navigate('SearchingAnimation')}>
                     <Text style={tw`text-center text-xl text-white`}>Choose {selected?.title}</Text>
                 </TouchableOpacity>
             </View>
