@@ -14,7 +14,7 @@ const Account = ({navigation}) => {
                 <TouchableOpacity 
                 onPress={()=>navigation.navigate('HomeScreen')}
                 style={{flexDirection:'row', alignItems:'center', marginVertical: 20, marginHorizontal: 10, justifyContent: 'flex-start'}}>
-                    <Icon name='left' color='black' type='antdesign' size={20}/>
+                    <Icon name='left' color='black' type='antdesign' size={15}/>
                     <Icon name='home' color='black' type='ionicons' size={30}/>
                 </TouchableOpacity>
             </View>

@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import tw from 'tailwind-react-native-classnames'
 import Map from '../components/Map'
-import { setDestination } from '../slices/navSlice'
+import { setDestination, setOrigin } from '../slices/navSlice'
 import {GOOGLE_MAPS_APIKEY} from "@env"; 
 import { useDispatch } from 'react-redux'
 import { TouchableOpacity } from 'react-native'
@@ -33,12 +33,18 @@ const MapScreen = () => {
                         paddingHorizontal: 15
                         }
                     }}
-                    onPress={(data, details = null) => {            
-                        dispatch(setDestination({
-                        location: details.geometry.location, 
-                        description: data.description, 
-                        }));  
-                    }}
+                   /* onPress={(data, details = null) => {            
+                        dispatch(
+                            setOrigin({
+                                location: details.geometry.location,
+                                description: data.description, 
+                            })
+                        );  
+
+                        dispatch(
+                            setDestination(null)
+                        ); 
+                    }} */
                     fetchDetails={true}
                     returnKeyType={'search'}
                     minLength={2}

@@ -7,9 +7,10 @@ import {GOOGLE_MAPS_APIKEY} from "@env";
 import { useDispatch } from 'react-redux';
 import { setDestination, setOrigin } from "../slices/navSlice"
 import { Icon } from 'react-native-elements';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
-const HomeScreen = ({navigation, dispatch}) => {
+const HomeScreen = () => {
+  const  dispatch = useDispatch();
 
     return (
         <SafeAreaView style={tw`bg-white h-full`}>
@@ -41,14 +42,18 @@ const HomeScreen = ({navigation, dispatch}) => {
               fontSize:18
             }
           }}
-          onPress={(data, details = null) => {            
-            dispatch(setOrigin({
-              location: details.geometry.location, 
-              description: data.description, 
-            })); 
+          onPress={(data, details) => {            
+            dispatch(
+                setOrigin({
+                    location: details.geometry.location,
+                    description: data.description, 
+                })
+            );  
 
-            dispatch(setDestination(null)); 
-          }}
+            dispatch(
+                setDestination(null)
+            ); 
+        }}
           fetchDetails={true}
           returnKeyType={'search'}
           minLength={2}
